@@ -4,13 +4,14 @@ import java.util.Scanner;
 public class MyClass {
     public static void main(String args[]) {
        
-    Scanner scan = new Scanner (System.in);
+    Scanner valor = new Scanner (System.in);
     
        // Variables para obtener los resultados necesarios
       double x1, x2;
       double a,b,c;
      
-      System.out.println("Ecuaciones cuadraticas");
+      System.out.println("SOLUCIÓN");
+      
       // Primera variable de la ecuación
       a = 7;
       //segunda variable de la ecuación
@@ -27,46 +28,52 @@ public class MyClass {
       if((a == 0) && (b == 0) && (c != 0)){
           System.out.println("No hay solucion");
       }
-      if((a != 0) && (b != 0) && (c ==0)){
-          System.out.println("x1 = 0");
-          System.out.println("x2 = "+ (Multi(-1,(Div(b,a)))));
-      }
-      if((a != 0) && (b != 0) && (c ==0)){
-          System.out.println("x1 = x2 = "+ (Multi(-1,(Div(c,b)))));
-      }
+      //Condicional cuando hay valores mayores que Cero en todas la variables
       if((a != 0) && (b != 0) && (c !=0)){
-          double discriminante = Multi(b,b);
-          discriminante =Rest(discriminante,(Multi(Multi(a,c),4)));
-          if(discriminante < 0){
+          double acumulado = poten(b);
+          acumulado =Rest(acumulado,(Multi(Multi(a,c),4)));
+          if(acumulado < 0){
               System.out.println("Los valores no son correctos");
           }else{
-              System.out.println("x1 = "+ Div((Sum(-b, raiz(discriminante))),Multi(2,a)));
-              System.out.println("x2 = "+ Div((Rest(-b, raiz(discriminante))),Multi(2,a)));
+              System.out.println("--------------------");
+              System.out.println("| x1 = "+ Div((Sum(-b, raiz(acumulado))),Multi(2,a)));
+              System.out.println("| x2 = "+ Div((Rest(-b, raiz(acumulado))),Multi(2,a)));
+              System.out.println("--------------------");
           }
       }
     }
     
     //Funciones de para realizar la formula de ecuaciones cuadraticas
+    //Suma
     public static double Sum(double n1, double n2){
         return n1+n2;
     }
+    //Resta
     public static double Rest(double n1, double n2){
         return n1-n2;
     }
+    //Multiplicación
     public static double Multi(double n1, double n2){
         return n1*n2;
     }
+    //Potencia
+    public static double poten(double n1){
+        return n1*n1;
+    }
+    
+    //Raiz Cuadrada
+    public static double raiz(double n1){
+        return Math.sqrt(n1);
+    }
+    //División 
     public static double Div(double n1, double n2){
         double temp = 0;
-        if(n2!=0 && n2>0){
+        if(n2>0 && n2!=0){
             temp= n1/n2;
         }else{
             System.out.println("No se puede");
         }
         return temp;
     }
-    public static double raiz(double n1){
-        return Math.sqrt(n1);
-    }
-   
+    
 }
